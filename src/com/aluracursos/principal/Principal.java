@@ -1,21 +1,21 @@
+package com.aluracursos.principal;
+
 import com.aluracursos.calculos.CalculadoraDeTiempo;
 import com.aluracursos.calculos.FiltrosRecomendaciones;
-import com.aluraursos.screenmatch.modelos.Episodios;
-import com.aluraursos.screenmatch.modelos.Pelicula;
-import com.aluraursos.screenmatch.modelos.Serie;
+import com.aluracursos.modelos.Episodios;
+import com.aluracursos.modelos.Pelicula;
+import com.aluracursos.modelos.Serie;
+
+import java.util.ArrayList;
 
 public class Principal {
     public static void main(String[] args) {
-        Pelicula miPelicula = new Pelicula();
-        miPelicula.setNombre("F1");
-        miPelicula.setFechaLanzamiento(2025);
+        Pelicula miPelicula = new Pelicula("F1", 2025);
         miPelicula.setDuracionEnMinutos(150);
         miPelicula.setIncluidoEnElPlan(true);
 
 
-        Serie casaDragon = new Serie();
-        casaDragon.setNombre("Casa del dragon");
-        casaDragon.setFechaLanzamiento(2022);
+        Serie casaDragon = new Serie("Casa del dragon", 2002);
         casaDragon.setTemporadas(1);
         casaDragon.setMinutosPorEpisodio(50);
         casaDragon.setEpisodiosPorTemporada(10);
@@ -40,6 +40,18 @@ public class Principal {
 
         filtrosRecomendaciones.filtrar(episodios);
 
+        var peliculaDeBruno = new Pelicula("El señor de los anillos", 2001);
+        peliculaDeBruno.setDuracionEnMinutos(180);
+        peliculaDeBruno.setFechaLanzamiento(2001);
+
+        ArrayList<Pelicula> listaDePeliculas = new ArrayList<>();
+        listaDePeliculas.add(miPelicula);
+        listaDePeliculas.add(peliculaDeBruno);
+
+        System.out.println("El tamaño de la lista es: " + listaDePeliculas.size());
+        System.out.println("La primera pelicula es: " + listaDePeliculas.get(0).getNombre());
+
+        System.out.println("toString de la pelicula: " + listaDePeliculas.get(0).toString());
 
     }
 }
