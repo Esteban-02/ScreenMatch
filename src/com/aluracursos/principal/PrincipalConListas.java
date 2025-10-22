@@ -6,6 +6,7 @@ import com.aluracursos.modelos.Titulo;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class PrincipalConListas {
     public static void main(String[] args) {
@@ -43,6 +44,9 @@ public class PrincipalConListas {
         System.out.println("Lista de artistas ordenada: " + listaDeArtistas);
 
         System.out.println("La lista de peliculas ordenada: "+ listaDePeliculas);
+
+        listaDePeliculas.sort(Comparator.comparing(Titulo::getFechaLanzamiento));
+        System.out.println("Lista ordenada por año" + listaDePeliculas);
 
     }
 }

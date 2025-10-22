@@ -1,7 +1,12 @@
 package com.aluracursos.modelos;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Titulo implements Comparable <Titulo>{
+    @SerializedName("Title")
     private   String nombre;
+
+    @SerializedName("Year")
     private int fechaLanzamiento;
     private int duracionEnMinutos;
     private boolean incluidoEnElPlan;
@@ -79,5 +84,11 @@ public class Titulo implements Comparable <Titulo>{
     @Override
     public int compareTo(Titulo otroTitulo) {
         return this.nombre.compareTo(otroTitulo.nombre);
+    }
+
+    @Override
+    public String toString() {
+        return "\tTitulo\n " + nombre + "\n" +
+                " FechaLanzamiento: " + fechaLanzamiento;
     }
 }
