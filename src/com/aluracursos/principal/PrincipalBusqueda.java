@@ -1,7 +1,10 @@
 package com.aluracursos.principal;
 
 import com.aluracursos.modelos.Titulo;
+import com.aluracursos.modelos.TituloOmd;
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.net.URI;
@@ -28,11 +31,22 @@ public class PrincipalBusqueda {
         String json = response.body();  // response.body() -> tiene la informacion del Json que se recupera de la busqueda de la API
         System.out.println("Nuevo Json\n" +json);
 
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();    //Crea el Gson coincidiendo el nombre de las variables como: titulo -> Titulo
+        TituloOmd miTituloOmdb = gson.fromJson(json, TituloOmd.class);  //Solo captura y guarda los datos que nececito, es decir solo nombre, año y tiempo
 
-        Titulo titulo = gson.fromJson(json, Titulo.class);
+        System.out.println(miTituloOmdb);
 
-        System.out.println(titulo);
+        try {
+            Titulo miTitulo = new Titulo(miTituloOmdb);         //Se convierte el recod en un objeto con el que puedo cambiar sus valores y usar metodos setter
+            System.out.println(miTitulo);
+        }catch (NumberFormatException e){
+            System.out.println("Ocurrio un error: ");
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("Finalizo la ejecucion del programa!!");
+
+
 
     }
 }
