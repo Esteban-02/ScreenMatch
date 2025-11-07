@@ -1,12 +1,11 @@
 package com.aluracursos.modelos;
 
+import com.aluracursos.excepcion.ErrorConversionTiempoExcepcion;
 import com.google.gson.annotations.SerializedName;
 
 public class Titulo implements Comparable <Titulo>{
-    @SerializedName("Title")
-    private   String nombre;
 
-    @SerializedName("Year")
+    private   String nombre;
     private int fechaLanzamiento;
     private int duracionEnMinutos;
     private boolean incluidoEnElPlan;
@@ -21,7 +20,10 @@ public class Titulo implements Comparable <Titulo>{
     public Titulo(TituloOmd miTituloOmdb) {
         this.nombre = miTituloOmdb.title();
         this.fechaLanzamiento = Integer.valueOf(miTituloOmdb.year());
-        this.duracionEnMinutos = Integer.valueOf(miTituloOmdb.runtime().substring(0,2));
+        if (miTituloOmdb.runtime().contains("N/A")){
+            throw new ErrorConversionTiempoExcepcion("No se puede convertir el tiempo porque contiene un N/A");
+        }
+        this.duracionEnMinutos = Integer.valueOf(miTituloOmdb.runtime().substring(0,3).replace(" ", ""));
     }
 
     public String getNombre() {

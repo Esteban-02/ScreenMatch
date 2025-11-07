@@ -1,0 +1,4 @@
+
+ Titulo: F1: The Movie
+ FechaLanzamiento: 2025
+ Duracion en minutos: 155
